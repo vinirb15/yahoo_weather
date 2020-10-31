@@ -19,6 +19,7 @@ export default function Temp() {
     console.log(background)
     return (
         <div className="App">
+            <img className="background" src={`https://www.bing.com/${background}`} alt="" />
 
             <div className="container">
 
