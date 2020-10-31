@@ -1,50 +1,55 @@
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-image: url(https://www.bing.com/th?id=OHR.FishOwl_ROW2140490008_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp);
-  height: 100vh;
-}
+  .App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://www.bing.com/th?id=OHR.FishOwl_ROW2140490008_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp);
+    height: 100vh;
+  }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #efefef70;
-  width: 80vh;
-}
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #efefef70;
+    width: 65vh;
+  }
 
-.container input {
-  width: 90%;
-  height: 2rem;
-  color: #333;
-  border: 1px solid #dcdce6;
-  border-radius: 3px;
-  padding: 0 24px;
-}
+  .container input {
+    width: 90%;
+    height: 2rem;
+    color: #333;
+    border: 1px solid #dcdce6;
+    border-radius: 3px;
+    padding: 0 24px;
+  }
 
-.today {
-  display: flex;
-  flex-wrap: wrap;
-  max-height: 30rem;
-}
+  .today {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+    max-height: 30rem;
+  }
 
-.today img {
-  max-width: 15rem;
-}
+  .today img {
+    max-width: 15rem;
+    margin-left: 10rem;
+  }
 
-.content {
-  margin-left: 5rem;
-}
+  .content {
+    margin-left: 4rem;
+  }
 
-.after-today {
-  display: flex;
-  flex-wrap: wrap;
-  max-height: 30rem;
-}
+  .after-today {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+    max-height: 30rem;
+  }
 
-.after-today img {
-  max-width: 5rem;
-}
+  .after-today img {
+    max-width: 5rem;
+    margin-left: 15rem;
+    margin-top: 2rem;
+  }
