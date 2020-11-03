@@ -7,7 +7,7 @@ export default class Loader extends Component {
 
         return (
             <div className="teste">
-                <div class="lds-hourglass"></div>
+                <div className="lds-hourglass"></div>
             </div>
         );
     }
