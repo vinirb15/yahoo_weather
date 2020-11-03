@@ -5,7 +5,6 @@ import CryptoJS from 'crypto-js';
 import './styles.css';
 
 import bing from '../services/bing';
-import api from '../services/api';
 
 import Image from '../assets/SVG/31.svg';
 
@@ -19,7 +18,6 @@ export default class Main extends Component {
 
     componentDidMount() {
         this.loadBackground();
-
 
         var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
         var method = 'GET';
@@ -62,9 +60,10 @@ export default class Main extends Component {
                 'X-Yahoo-App-Id': app_id
             },
             method: 'GET',
-            success: function (data) {
-                console.log(data);
-            }
+            success: (value) => {
+                this.setState({ temperature: value })
+                console.log(this.state.temperature)
+                }
         })
     }
 
