@@ -7,11 +7,27 @@ import './styles.css';
 import bing from '../services/bing';
 import Loader from '../components/loader';
 
-import Image from '../assets/SVG/31.svg';
+import Image from '../assets/SVG/30.svg';
 
 
 export default class Main extends Component {
     state = {
+        actualTemperature: [
+            {
+                temperature: [],
+                wind: [],
+                humidity: [],
+                pressure: [],
+                code: []
+            }
+        ],
+        tomorrow: [{
+            min: [],
+            max: [],
+            day: [],
+            text: [],
+            code: []
+        }],
         temperature: [],
         background: [],
         loading: []
@@ -26,7 +42,7 @@ export default class Main extends Component {
         var consumer_key = 'dj0yJmk9cEh1U3VVT3FEYkNzJmQ9WVdrOVMzUnRaMFU1UTFFbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PThl';
         var consumer_secret = 'fbddac2802fbdbf8bcca29d9fd35f43a105da625';
         var concat = '&';
-        var query = { 'location': 'sunnyvale,ca', 'format': 'json' };
+        var query = { 'location': 'sunnyvale,ca', 'format': 'json', 'u': 'c' };
         var oauth = {
             'oauth_consumer_key': consumer_key,
             'oauth_nonce': Math.random().toString(36).substring(2),
@@ -62,21 +78,27 @@ export default class Main extends Component {
             },
             method: 'GET',
             success: (value) => {
-                this.setState({ temperature: value })
-                console.log(this.state.temperature)
+                this.setState({
+                    temperature: value,
+                    actualTemperature: {
+                        temperature: value.current_observation.condition.temperature,
+                        wind: value.current_observation.wind.speed,
+                        humidity: value.current_observation.atmosphere.humidity,
+                        pressure: value.current_observation.atmosphere.pressure,
+                        code: value.current_observation.condition.code
+                    },
+                    tomorrow: {
+                        min: [],
+                        max: [],
+                        day: [],
+                        text: [],
+                        code: []
+                    }
+                })
+                console.log(this.state.temperature.forecasts[0])
             }
         })
     }
-
-
-    // this.setState({ loading: true }, () => {
-    //     Axios.get('/endpoint')
-    //       .then(result => this.setState({
-    //         loading: false,
-    //         data: [...result.data],
-    //       }));
-    //   });
-
 
     loadBackground = async () => {
         this.setState({ loadin: true })
@@ -86,7 +108,7 @@ export default class Main extends Component {
             loading: false
         })
     }
-
+    // {this.state.actualTemperature}
     render() {
         const content = (<div className="App">
             <img className="background" src={`https://www.bing.com/${this.state.background}`} alt="background" />
@@ -98,11 +120,11 @@ export default class Main extends Component {
                 <div className="today">
                     <img src={Image} alt="" />
                     <div className="content">
-                        <h1>hoje 23c</h1>
+                        <h1>hoje {this.state.actualTemperature.temperature}</h1>
                         <h2>Parcialmente Nublado</h2>
-                        <p>Vento: 9km/h</p>
-                        <p>Humidade: 80%</p>
-                        <p>Pressão: 1003hPA</p>
+                        <p>Vento: {this.state.actualTemperature.wind}km/h</p>
+                        <p>Humidade: {this.state.actualTemperature.humidity}%</p>
+                        <p>Pressão: {this.state.actualTemperature.pressure}hPA</p>
                     </div>
                 </div>
 
