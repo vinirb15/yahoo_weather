@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const bing = axios.create({
-    baseURL: 'https://cors-anywhere.herokuapp.com/https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=pt-BR',
+const api = axios.create({
+    baseURL: 'https://weather-ydn-yql.media.yahoo.com/forecastrss',
 })
 
-export default bing;
+export default api;
