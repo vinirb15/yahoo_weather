@@ -5,6 +5,7 @@ import CryptoJS from 'crypto-js';
 import './styles.css';
 
 import bing from '../services/bing';
+import Loader from '../components/loader';
 
 import Image from '../assets/SVG/31.svg';
 
@@ -12,13 +13,13 @@ import Image from '../assets/SVG/31.svg';
 export default class Main extends Component {
     state = {
         temperature: [],
-        background: []
+        background: [],
+        loading: []
     }
 
 
     componentDidMount() {
         this.loadBackground();
-
         var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
         var method = 'GET';
         var app_id = 'KtmgE9CQ';
@@ -63,63 +64,81 @@ export default class Main extends Component {
             success: (value) => {
                 this.setState({ temperature: value })
                 console.log(this.state.temperature)
-                }
+            }
         })
     }
 
+
+    // this.setState({ loading: true }, () => {
+    //     Axios.get('/endpoint')
+    //       .then(result => this.setState({
+    //         loading: false,
+    //         data: [...result.data],
+    //       }));
+    //   });
+
+
     loadBackground = async () => {
+        this.setState({ loadin: true })
         const response = await bing.get()
-        this.setState({ background: response.data.images[0].url })
+        this.setState({
+            background: response.data.images[0].url,
+            loading: false
+        })
     }
 
     render() {
-        return (
-            <div className="App">
-                <img className="background" src={`https://www.bing.com/${this.state.background}`} alt="background" />
+        const content = (<div className="App">
+            <img className="background" src={`https://www.bing.com/${this.state.background}`} alt="background" />
 
-                <div className="container">
+            <div className="container">
 
-                    <input type="text" />
+                <input type="text" />
 
-                    <div className="today">
-                        <img src={Image} alt="" />
-                        <div className="content">
-                            <h1>hoje 23c</h1>
-                            <h2>Parcialmente Nublado</h2>
-                            <p>Vento: 9km/h</p>
-                            <p>Humidade: 80%</p>
-                            <p>Pressão: 1003hPA</p>
-                        </div>
+                <div className="today">
+                    <img src={Image} alt="" />
+                    <div className="content">
+                        <h1>hoje 23c</h1>
+                        <h2>Parcialmente Nublado</h2>
+                        <p>Vento: 9km/h</p>
+                        <p>Humidade: 80%</p>
+                        <p>Pressão: 1003hPA</p>
                     </div>
-
-                    <div className="after-today">
-                        <img src={Image} alt="" />
-                        <div className="content">
-                            <h1>hoje 23c</h1>
-                            <h2>Parcialmente Nublado</h2>
-                            <p>Vento: 9km/h</p>
-                            <p>Humidade: 80%</p>
-                            <p>Pressão: 1003hPA</p>
-                        </div>
-                    </div>
-
-
-
-                    <div className="after-today">
-                        <img src={Image} alt="" />
-                        <div className="content">
-                            <h1>hoje 23c</h1>
-                            <h2>Parcialmente Nublado</h2>
-                            <p>Vento: 9km/h</p>
-                            <p>Humidade: 80%</p>
-                            <p>Pressão: 1003hPA</p>
-                        </div>
-                    </div>
-
-
                 </div>
 
+                <div className="after-today">
+                    <img src={Image} alt="" />
+                    <div className="content">
+                        <h1>hoje 23c</h1>
+                        <h2>Parcialmente Nublado</h2>
+                        <p>Vento: 9km/h</p>
+                        <p>Humidade: 80%</p>
+                        <p>Pressão: 1003hPA</p>
+                    </div>
+                </div>
+
+
+
+                <div className="after-today">
+                    <img src={Image} alt="" />
+                    <div className="content">
+                        <h1>hoje 23c</h1>
+                        <h2>Parcialmente Nublado</h2>
+                        <p>Vento: 9km/h</p>
+                        <p>Humidade: 80%</p>
+                        <p>Pressão: 1003hPA</p>
+                    </div>
+                </div>
+
+
             </div>
+
+        </div>)
+
+        const { loading } = this.state;
+
+        return (
+            (loading ? <Loader /> : content)
         );
     }
 }

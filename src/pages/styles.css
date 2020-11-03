@@ -1,18 +1,3 @@
-body { 
-	animation: fade ease 6s;
-	animation-iteration-count: 1; 
-	animation-fill-mode: forwards; 
-} 
-
-@keyframes fade { 
-	0% { 
-		opacity: 0; 
-	} 
-	100% { 
-		opacity: 1; 
-	} 
-} 
-
 .App {
     display: flex;
     flex-direction: column;
