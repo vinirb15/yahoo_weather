@@ -10,24 +10,37 @@ import Loader from '../components/loader';
 import Image from '../assets/SVG/30.svg';
 
 
+
 export default class Main extends Component {
     state = {
         actualTemperature: [
             {
                 temperature: [],
+                text: [],
                 wind: [],
                 humidity: [],
                 pressure: [],
                 code: []
             }
         ],
-        tomorrow: [{
-            min: [],
-            max: [],
-            day: [],
-            text: [],
-            code: []
-        }],
+        tomorrow: [
+            {
+                min: [],
+                max: [],
+                day: [],
+                text: [],
+                code: []
+            }
+        ],
+        afterTomorrow: [
+            {
+                min: [],
+                max: [],
+                day: [],
+                text: [],
+                code: []
+            }
+        ],
         temperature: [],
         background: [],
         loading: []
@@ -82,20 +95,28 @@ export default class Main extends Component {
                     temperature: value,
                     actualTemperature: {
                         temperature: value.current_observation.condition.temperature,
+                        text: value.current_observation.condition.text,
                         wind: value.current_observation.wind.speed,
                         humidity: value.current_observation.atmosphere.humidity,
                         pressure: value.current_observation.atmosphere.pressure,
                         code: value.current_observation.condition.code
                     },
                     tomorrow: {
-                        min: [],
-                        max: [],
-                        day: [],
-                        text: [],
-                        code: []
+                        low: value.forecasts[1].low,
+                        high: value.forecasts[1].high,
+                        day: value.forecasts[1].day,
+                        text: value.forecasts[1].text,
+                        code: value.forecasts[1].code
+                    },
+                    afterTomorrow: {
+                        low: value.forecasts[2].low,
+                        high: value.forecasts[2].high,
+                        day: value.forecasts[2].day,
+                        text: value.forecasts[2].text,
+                        code: value.forecasts[2].code
                     }
                 })
-                console.log(this.state.temperature.forecasts[0])
+                console.log(value.current_observation)
             }
         })
     }
@@ -120,22 +141,21 @@ export default class Main extends Component {
                 <div className="today">
                     <img src={Image} alt="" />
                     <div className="content">
-                        <h1>hoje {this.state.actualTemperature.temperature}</h1>
-                        <h2>Parcialmente Nublado</h2>
-                        <p>Vento: {this.state.actualTemperature.wind}km/h</p>
-                        <p>Humidade: {this.state.actualTemperature.humidity}%</p>
-                        <p>Pressão: {this.state.actualTemperature.pressure}hPA</p>
+                        <h1>Now: {this.state.actualTemperature.temperature}°C</h1>
+                        <h2>{this.state.actualTemperature.text}</h2>
+                        <p><b>Vento: {this.state.actualTemperature.wind}km/h</b></p>
+                        <p><b>Humidade: {this.state.actualTemperature.humidity}%</b></p>
+                        <p><b>Pressão: {this.state.actualTemperature.pressure}hPA</b></p>
                     </div>
                 </div>
 
                 <div className="after-today">
                     <img src={Image} alt="" />
                     <div className="content">
-                        <h1>hoje 23c</h1>
-                        <h2>Parcialmente Nublado</h2>
-                        <p>Vento: 9km/h</p>
-                        <p>Humidade: 80%</p>
-                        <p>Pressão: 1003hPA</p>
+                        <h2>{this.state.tomorrow.day}</h2>
+                        <p><b>{this.state.tomorrow.text}</b></p>
+                        <p><b>High: {this.state.tomorrow.high}°C</b></p>
+                        <p><b>Low: {this.state.tomorrow.low}°C</b></p>
                     </div>
                 </div>
 
@@ -144,11 +164,10 @@ export default class Main extends Component {
                 <div className="after-today">
                     <img src={Image} alt="" />
                     <div className="content">
-                        <h1>hoje 23c</h1>
-                        <h2>Parcialmente Nublado</h2>
-                        <p>Vento: 9km/h</p>
-                        <p>Humidade: 80%</p>
-                        <p>Pressão: 1003hPA</p>
+                        <h2>{this.state.afterTomorrow.day}</h2>
+                        <p><b>{this.state.afterTomorrow.text}</b></p>
+                        <p><b>High: {this.state.afterTomorrow.high}°C</b></p>
+                        <p><b>Low: {this.state.afterTomorrow.low}°C</b></p>
                     </div>
                 </div>
 
