@@ -9,7 +9,7 @@ import Loader from '../components/loader';
 
 import Image from '../assets/SVG/30.svg';
 
-
+import ('../assets/SVG/30.svg').then(console.log);
 
 export default class Main extends Component {
     state = {
@@ -55,7 +55,7 @@ export default class Main extends Component {
         var consumer_key = 'dj0yJmk9cEh1U3VVT3FEYkNzJmQ9WVdrOVMzUnRaMFU1UTFFbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PThl';
         var consumer_secret = 'fbddac2802fbdbf8bcca29d9fd35f43a105da625';
         var concat = '&';
-        var query = { 'location': 'sunnyvale,ca', 'format': 'json', 'u': 'c' };
+        var query = { 'location': 'juazeiro do norte,ce', 'format': 'json', 'u': 'c' };
         var oauth = {
             'oauth_consumer_key': consumer_key,
             'oauth_nonce': Math.random().toString(36).substring(2),
@@ -116,7 +116,7 @@ export default class Main extends Component {
                         code: value.forecasts[2].code
                     }
                 })
-                console.log(value.current_observation)
+                console.log(value)
             }
         })
     }
@@ -131,6 +131,7 @@ export default class Main extends Component {
     }
     // {this.state.actualTemperature}
     render() {
+        const numero = 1;
         const content = (<div className="App">
             <img className="background" src={`https://www.bing.com/${this.state.background}`} alt="background" />
 
@@ -139,7 +140,7 @@ export default class Main extends Component {
                 <input type="text" />
 
                 <div className="today">
-                    <img src={Image} alt="" />
+                    <img src={`assets/SVG/${this.state.actualTemperature.code}.svg`} alt="" />
                     <div className="content">
                         <h1>Now: {this.state.actualTemperature.temperature}°C</h1>
                         <h2>{this.state.actualTemperature.text}</h2>
