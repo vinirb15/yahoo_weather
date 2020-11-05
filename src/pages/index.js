@@ -180,55 +180,56 @@ export default class Main extends Component {
         }
 
         var code_parser = {
+            0: 45,
             1: 13,
-            2: 6,
-            3: 13,
+            2: 13,
+            3: 6,
             4: 16,
-            5: 15,
+            5: 23,
             6: 23,
-            7: 39,
-            8: 40,
-            9: 20,
-            10: 17,
-            11: 20,
-            12: 17,
-            13: 18,
-            14: 21,
+            7: 23,
+            8: 20,
+            9: 17,
+            10: 20,
+            11: 17,
+            12: 18,
+            13: 24,
+            14: 24,
             15: 21,
             16: 23,
-            17: 21,
+            17: 20,
             18: 20,
             19: 20,
             20: 25,
             21: 13,
             22: 25,
-            23: 13,
+            23: 6,
             24: 6,
             25: 6,
-            26: 6,
-            27: 13,
-            28: 9,
-            29: 8,
-            30: 9,
-            31: 8,
-            32: 3,
-            33: 2,
-            34: 3,
-            35: 2,
-            36: 18,
-            37: 43,
-            38: 6,
-            39: 6,
-            40: 6,
-            41: 17,
-            42: 6,
+            26: 25,
+            27: 9,
+            28: 8,
+            29: 9,
+            30: 8,
+            31: 3,
+            32: 2,
+            33: 3,
+            34: 2,
+            35: 24,
+            36: 2,
+            37: 26,
+            38: 26,
+            39: 26,
+            40: 17,
+            41: 21,
+            42: 21,
             43: 21,
-            44: 6,
-            45: 14,
-            46: 26,
-            47: 22,
-            48: 15,
-            49: 13
+            44: 14,
+            45: 26,
+            46: 22,
+            47: 15,
+            48: 45,
+            49: 45
         }
 
         const content = (<div className="App">
@@ -253,7 +254,7 @@ export default class Main extends Component {
                     <img src={`assets/SVG/${code_parser[this.state.tomorrow.code + ""]}.svg`} alt="" />
                     <div className="content">
                         <h2>{this.state.tomorrow.day}</h2>
-                        <p><b>{this.state.tomorrow.text}</b></p>
+                        <p><b>{yw_ptbr[this.state.tomorrow.code + ""]}</b></p>
                         <p><b>High: {this.state.tomorrow.high}°C</b></p>
                         <p><b>Low: {this.state.tomorrow.low}°C</b></p>
                     </div>
@@ -265,7 +266,7 @@ export default class Main extends Component {
                     <img src={`assets/SVG/${code_parser[this.state.afterTomorrow.code + ""]}.svg`} alt="" />
                     <div className="content">
                         <h2>{this.state.afterTomorrow.day}</h2>
-                        <p><b>{this.state.afterTomorrow.text}</b></p>
+                        <p><b>{yw_ptbr[this.state.afterTomorrow.code + ""]}</b></p>
                         <p><b>High: {this.state.afterTomorrow.high}°C</b></p>
                         <p><b>Low: {this.state.afterTomorrow.low}°C</b></p>
                     </div>
