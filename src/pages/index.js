@@ -4,9 +4,9 @@ import axios from 'axios';
 
 import './styles.css';
 
-import bing from '../services/bing';
 import Loader from '../components/loader';
-import {yw_ptbr, code_parser} from '../components/Parser';
+import { yw_ptbr, code_parser } from '../components/Parser';
+import LoadBackground from '../components/Background';
 
 export default function Temperature() {
     const [actualTemperature, setActualTemperature] = useState({
@@ -34,13 +34,10 @@ export default function Temperature() {
         code: []
     })
 
-    const [background, setBackground] = useState('')
 
     const [loading, setLoading] = useState(true)
 
     const [location, setLocation] = useState('')
-
-    const [ converter, setConverter ] = useState('c')
 
     var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
     var method = 'GET';
@@ -48,7 +45,7 @@ export default function Temperature() {
     var consumer_key = 'dj0yJmk9cEh1U3VVT3FEYkNzJmQ9WVdrOVMzUnRaMFU1UTFFbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PThl';
     var consumer_secret = 'fbddac2802fbdbf8bcca29d9fd35f43a105da625';
     var concat = '&';
-    var query = { 'location': 'fortaleza,ce', 'format': 'json', 'u': converter };
+    var query = { 'location': 'fortaleza,ce', 'format': 'json', 'u': 'c' };
     var oauth = {
         'oauth_consumer_key': consumer_key,
         'oauth_nonce': Math.random().toString(36).substring(2),
@@ -78,7 +75,6 @@ export default function Temperature() {
 
     useEffect(async () => {
         await geoLocation()
-        await loadBackground()
         await loadWeather()
         setLoading(false)
     }, []);
@@ -128,15 +124,10 @@ export default function Temperature() {
 
 
 
-    async function loadBackground() {
-        const response = await bing.get()
-        setBackground(response.data.images[0].url)
-    }
-
 
     const content = (<div className="App">
-        <img className="background" src={`https://www.bing.com/${background}`} alt="background" />
-
+        <LoadBackground />
+        
         <div className="container">
 
             <input type="text" onChange={e => setLocation({ location: e.target.value })} />
