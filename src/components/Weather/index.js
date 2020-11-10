@@ -30,13 +30,15 @@ export default function Weather() {
         code: []
     })
 
+    const [location, setLocation] = useState('fortaleza, ce')
+
     var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
     var method = 'GET';
     var app_id = 'KtmgE9CQ';
     var consumer_key = 'dj0yJmk9cEh1U3VVT3FEYkNzJmQ9WVdrOVMzUnRaMFU1UTFFbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PThl';
     var consumer_secret = 'fbddac2802fbdbf8bcca29d9fd35f43a105da625';
     var concat = '&';
-    var query = { 'location': 'fortaleza,ce', 'format': 'json', 'u': 'c' };
+    var query = { 'location': location, 'format': 'json', 'u': 'c' };
     var oauth = {
         'oauth_consumer_key': consumer_key,
         'oauth_nonce': Math.random().toString(36).substring(2),
@@ -98,13 +100,13 @@ export default function Weather() {
             text: response.data.forecasts[2].text,
             code: response.data.forecasts[2].code
         });
+        console.log(response)
     }
-
-
-
 
     return (
         <>
+            <input type="text" onKeyDown={e => e.keyCode === 13 && loadWeather()} onChange={e => setLocation({ location: `${e.target.value}` }) & console.log(location)} />
+
             <div className="today">
                 <img src={`assets/SVG/${code_parser[actualTemperature.code + ""]}.svg`} alt="" />
                 <div className="content">

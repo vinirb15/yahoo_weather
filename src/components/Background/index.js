@@ -7,7 +7,6 @@ export default function LoadBackground() {
     useEffect(async () => {
         const response = await axios.get('http://localhost:8000/image')
         setBackground(response.data.images[0].url)
-        console.log(response)
     }, []);
     
 
