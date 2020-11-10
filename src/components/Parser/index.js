@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 export const yw_ptbr = {
+=======
+var yw_ptbr = {
+>>>>>>> 6de3a17338135662da1b9115d2a58a031032ea32
     '0': 'tornado',
     '1': 'tempestade tropical',
     '2': 'furacão',
@@ -50,7 +54,11 @@ export const yw_ptbr = {
     '3200': 'não disponível'
 }
 
+<<<<<<< HEAD
 export const code_parser = {
+=======
+var code_parser = {
+>>>>>>> 6de3a17338135662da1b9115d2a58a031032ea32
     0: 45,
     1: 13,
     2: 13,
@@ -102,3 +110,8 @@ export const code_parser = {
     48: 45,
     49: 45
 }
+<<<<<<< HEAD
+=======
+
+export { yw_ptbr, code_parser }
+>>>>>>> 6de3a17338135662da1b9115d2a58a031032ea32
