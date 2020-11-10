@@ -6,7 +6,8 @@ import './styles.css';
 
 import bing from '../services/bing';
 import Loader from '../components/loader';
-import {yw_ptbr, code_parser} from '../components/Parser'
+import {yw_ptbr, code_parser} from '../components/Parser';
+import Toggle from '../components/Toggle';
 
 export default function Temperature() {
     const [actualTemperature, setActualTemperature] = useState({
@@ -40,13 +41,15 @@ export default function Temperature() {
 
     const [location, setLocation] = useState('')
 
+    const [ converter, setConverter ] = useState('c')
+
     var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
     var method = 'GET';
     var app_id = 'KtmgE9CQ';
     var consumer_key = 'dj0yJmk9cEh1U3VVT3FEYkNzJmQ9WVdrOVMzUnRaMFU1UTFFbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PThl';
     var consumer_secret = 'fbddac2802fbdbf8bcca29d9fd35f43a105da625';
     var concat = '&';
-    var query = { 'location': 'fortaleza,ce', 'format': 'json', 'u': 'c' };
+    var query = { 'location': 'fortaleza,ce', 'format': 'json', 'u': converter };
     var oauth = {
         'oauth_consumer_key': consumer_key,
         'oauth_nonce': Math.random().toString(36).substring(2),
@@ -172,7 +175,7 @@ export default function Temperature() {
                 </div>
             </div>
 
-
+            <Toggle />
         </div>
 
     </div>)
