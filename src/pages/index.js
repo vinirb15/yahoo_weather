@@ -7,7 +7,6 @@ import './styles.css';
 import bing from '../services/bing';
 import Loader from '../components/loader';
 import {yw_ptbr, code_parser} from '../components/Parser';
-import Toggle from '../components/Toggle';
 
 export default function Temperature() {
     const [actualTemperature, setActualTemperature] = useState({
@@ -174,8 +173,6 @@ export default function Temperature() {
                     <p><b>Low: {afterTomorrow.low}°C</b></p>
                 </div>
             </div>
-
-            <Toggle />
         </div>
 
     </div>)
